@@ -162,12 +162,12 @@ const scene = new THREE.Scene();
 
         //  Animate Scene
 
-        // const animate = function () {
-        //     requestAnimationFrame( animate );
+        const animate = function () {
+            requestAnimationFrame( animate );
             
-        //     treeGroup.rotation.y += 0.005
+            treeGroup.rotation.y += 0.005
 
             renderer.render( scene, camera );
-        // };
+        };
 
-        // animate();
+        animate();
