@@ -39,9 +39,14 @@ const scene = new THREE.Scene();
 
         // recursive function creates limbs and joints at random
 
+
         function limb(base, shade = 0x464333, ymove = base*2, xmove = 0, zmove = 0, rotatez = 0, rotatex = 0, trunk = true) {
 
-            const geometry = new THREE.CylinderGeometry((base*.9)/4, base/4, base*4, 10);
+            setTimeout(() => {
+
+
+
+            const geometry = new THREE.CylinderGeometry((base*.9)/4, base/4, base*4, 4);
             const material = new THREE.MeshLambertMaterial( {color: shade} );
             const branch = new THREE.Mesh( geometry, material );
             branch.castShadow = true;
@@ -89,7 +94,7 @@ const scene = new THREE.Scene();
 
             // check to see if should generate new limb
 
-            if (Math.random() < .9 && base > .3) {
+            if (Math.random() < .9 && base > .2) {
 
                 newz = rotatez
                 newx = rotatex
@@ -99,7 +104,7 @@ const scene = new THREE.Scene();
 
                 limb(base*.5, shade, ymove, xmove, zmove, newz*1.2, newx*1.2, false)
 
-                if (Math.random() < .5 && base > .3) {
+                if (Math.random() < .5) {
 
                     newz2 = rotatez
                     newx2 = rotatex
@@ -109,7 +114,7 @@ const scene = new THREE.Scene();
 
                     limb(base*.5, shade, ymove, xmove, zmove, newz2*1.2, newx2*1.2, false)
 
-                    if (Math.random() < .2 && base > .3) {
+                    if (Math.random() < .2) {
 
                         newz3 = rotatez
                         newx3 = rotatex
@@ -117,28 +122,30 @@ const scene = new THREE.Scene();
                         newz3 += (Math.random() - .5)
                         newx3 += (Math.random() - .5)
 
-                        limb(base*.5, shade, ymove, xmove, zmove, newz3*1.2, newx3*1.2, false)
+                        limb(base*.5, shade, ymove, xmove, zmove, newz3*2, newx3*2, false)
                     }
                 }
             }
 
             // check to see if branch is large enogh to continue
 
-            if (base > .3) {
+            if (base > .2) {
 
                 if (!trunk) {
-                    rotatez += (Math.random() - .5)
-                    rotatex += (Math.random() - .5)
+                    rotatez += (Math.random() - .5)*2
+                    rotatex += (Math.random() - .5)*2
                 } else {
                     rotatez += (Math.random() - .5)/8
                     rotatex += (Math.random() - .5)/8
                 }
 
-
-
                 limb(base*.9, shade, ymove, xmove, zmove, rotatez, rotatex, trunk)
             } 
+
+        }, 250);
+
         }
+        
 
         //  create a new instance of my tree
 
@@ -150,6 +157,14 @@ const scene = new THREE.Scene();
 
         scene.add( ground )
 
+        // const leafShape = new THREE.Shape();
+
+
+        // const leafGeometry = new THREE.ShapeGeometry( leafShape );
+        // const leafMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff});
+        // const leaf = new THREE.Mesh( leafGeometry, leafMaterial );
+
+
 
 
         let treeGroup = new THREE.Group()
@@ -157,6 +172,8 @@ const scene = new THREE.Scene();
 
         treeGroup.castShadow = true;
         treeGroup.receiveShadow = true;
+
+        console.log(treeGroup)
 
         scene.add(treeGroup)
 
