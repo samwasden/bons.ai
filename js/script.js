@@ -142,7 +142,7 @@ const scene = new THREE.Scene();
                 limb(base*.9, shade, ymove, xmove, zmove, rotatez, rotatex, trunk)
             } 
 
-        }, 250);
+        }, 100);
 
         }
         
