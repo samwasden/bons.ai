@@ -1,0 +1,24 @@
+{
+  "name": "bons.ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samwasden/bons.ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samwasden/bons.ai/issues"
+  },
+  "homepage": "https://github.com/samwasden/bons.ai#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
