@@ -1,5 +1,5 @@
 const scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xdddddd );
+    scene.background = new THREE.Color( 0xc0c5cc );
         const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
         camera.position.z = 50;
@@ -18,7 +18,7 @@ const scene = new THREE.Scene();
 
         document.body.appendChild( renderer.domElement );
 
-        const ambientLight = new THREE.AmbientLight( 0xE8E8E8, 0.7 ); // soft white light
+        const ambientLight = new THREE.AmbientLight( 0xE8E8E8, 0.4 ); // soft white light
         scene.add( ambientLight );
 
         const light = new THREE.DirectionalLight( 0xE8E8E8, 1 );
@@ -40,7 +40,7 @@ const scene = new THREE.Scene();
         // recursive function creates limbs and joints at random
 
 
-        function limb(base, shade = 0x464333, ymove = base*2, xmove = 0, zmove = 0, rotatez = 0, rotatex = 0, trunk = true) {
+        function limb(base, shade = 0xc0b497, ymove = base*2, xmove = 0, zmove = 0, rotatez = 0, rotatex = 0, trunk = true) {
 
             setTimeout(() => {
 
@@ -50,6 +50,8 @@ const scene = new THREE.Scene();
             const material = new THREE.MeshLambertMaterial( {color: shade} );
             const branch = new THREE.Mesh( geometry, material );
             branch.castShadow = true;
+            branch.receiveShadow = true;
+
 
             // roatate and change horizontal position
 
@@ -149,8 +151,8 @@ const scene = new THREE.Scene();
 
         //  create a new instance of my tree
 
-        let groundGeometry = new THREE.BoxGeometry(100, 100, 10)
-        let groundMaterial = new THREE.MeshLambertMaterial( {color: 0xffffff} );
+        let groundGeometry = new THREE.BoxGeometry(1000, 100, 10)
+        let groundMaterial = new THREE.MeshLambertMaterial( {color: 0x3c3f33} );
         const ground = new THREE.Mesh( groundGeometry, groundMaterial );
         ground.rotation.x = -1.5708
         ground.receiveShadow = true;
